@@ -1,0 +1,18 @@
+version: '3.9'
+name: test-svc
+
+services:
+  test-svc:
+    image: test-svc
+    networks:
+      - dev-net
+    container_name: test-svc
+    build:
+      dockerfile: dockerfile
+    volumes:
+      - ./documents/:/app/documents
+      - ./generated/:/app/generated
+networks:
+  dev-net:
+    name: restaurant-dev-net
+    external: true

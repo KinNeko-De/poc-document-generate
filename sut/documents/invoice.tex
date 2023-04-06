@@ -1,0 +1,80 @@
+%% LyX 2.3.7 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+%% \usepackage[T1]{fontenc}
+%% \usepackage[latin9]{luainputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{textcomp}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\begin{minipage}[t]{0.4\columnwidth}%
+\begin{flushleft}
+restaurant.think.different
+\par\end{flushleft}%
+\end{minipage} \hfill{}%
+\begin{minipage}[t]{0.4\columnwidth}%
+\begin{flushright}
+Rechnung
+\par\end{flushright}%
+\end{minipage}
+
+\bigskip{}
+
+\begin{minipage}[t]{0.4\columnwidth}%
+\{\{Rechnungsadresse.Name\}\}
+
+\{\{Rechnungsadresse.Strasse\}\}
+
+\{\{Rechnungsaddresse.Ort, Rechnungsaddresse.Plz\}\}
+
+\{\{Rechnungsaddresse.Land\}\}%
+\end{minipage}\hfill{}%
+\begin{minipage}[t]{0.4\columnwidth}%
+\textcolor{black}{\scriptsize{}Referenznummer \{\{Referenznummer\}\}}{\scriptsize\par}
+
+\textcolor{black}{\scriptsize{}Verkauf durch Verkäufer}{\scriptsize\par}
+
+\textcolor{black}{\scriptsize{}\rule[0.5ex]{1\columnwidth}{1pt}}{\scriptsize\par}
+
+\textcolor{black}{\scriptsize{}Rechnnungsdatum /}\\
+\textcolor{black}{\scriptsize{}Lieferdatum 4.9.65}{\scriptsize\par}%
+\end{minipage}
+
+\vspace{10ex}
+
+Rechnungsdetails
+
+\hfill{}%
+\begin{minipage}[t]{0.98\columnwidth}%
+\begin{tabular*}{0.99\columnwidth}{@{\extracolsep{\fill}}>{\raggedright}p{0.3\columnwidth}rrrrr}
+{\scriptsize{}Beschreibung} & {\scriptsize{}Menge} & {\scriptsize{}Stückpreis} & {\scriptsize{}USt.\%} & {\scriptsize{}Stückpreis} & {\scriptsize{}Summe}\tabularnewline
+{\scriptsize{}vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe}{\scriptsize\par}
+
+{\scriptsize{}ANS 23054303053} & {\scriptsize{}2} & {\scriptsize{}3,35 €} & {\scriptsize{}19\%} & {\scriptsize{}3,99 €} & {\scriptsize{}7,98 €}\tabularnewline
+{\scriptsize{}vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe}{\scriptsize\par}
+
+{\scriptsize{}ANS 606406540} & {\scriptsize{}1} & {\scriptsize{}9,07 €} & {\scriptsize{}19\%} & {\scriptsize{}10,79} & {\scriptsize{}10,79 €}\tabularnewline
+{\scriptsize{}Versandkosten} &  & {\scriptsize{}0,00 €} &  & {\scriptsize{}0,00 €} & {\scriptsize{}0,00 €}\tabularnewline
+\end{tabular*}%
+\end{minipage}
+
+\hfill{}%
+\begin{minipage}[t]{0.3\columnwidth}%
+Gesamtpreis%
+\end{minipage}%
+\noindent\begin{minipage}[t]{0.1\columnwidth}%
+\begin{flushright}
+18,77 €
+\par\end{flushright}%
+\end{minipage}
+\end{document}

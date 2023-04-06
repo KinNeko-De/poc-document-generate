@@ -1,0 +1,26 @@
+%% LyX 2.3.7 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{scrreprt}
+\usepackage{fontspec}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{luacode}
+
+\makeatother
+
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=american]{english}
+\begin{document}
+Test
+
+TEst
+
+Die Kreiszahl $\pi$ hat den Wert \directlua{tex.print(math.pi)}.
+
+\begin{luacode*}
+  for x=1,10 do -- Schleifenanfang
+   tex.print(x)
+  end
+\end{luacode*} 
+\end{document}
