@@ -2,13 +2,13 @@ version: '3.9'
 name: restaurant-document-generate-function
 
 services:
-  test-svc:
+  restaurant-document-generate-function:
     image: restaurant-document-generate-function
     networks:
       - dev-net
     container_name: restaurant-document-generate-function
     build:
-      dockerfile: dockerfilefinal
+      dockerfile: dockerfile
     volumes:
       - ./documents/:/app/documents
       - ./generated/:/app/generated

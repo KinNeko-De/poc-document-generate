@@ -1,1 +1,0 @@
-docker run -v C:\Users\diekmannni\github\kinneko-de\test-document-generate\sut/documents/:/app/documents/ -v C:\Users\diekmannni\github\kinneko-de\test-document-generate\sut/generated/:/app/generated/ -t -i generate_debug-svc

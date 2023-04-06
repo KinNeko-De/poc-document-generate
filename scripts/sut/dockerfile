@@ -1,38 +1,11 @@
-FROM golang:1.20-bullseye AS base
-RUN apt-get update && apt-get upgrade -y
-
-ARG DEBIAN_FRONTEND=noninteractive 
-
-RUN apt-get update && \
-    apt-get --no-install-recommends install -y \
-        perl-modules \
-        liburi-encode-perl \
-        gnupg \
-        wget && \
-    rm -rf /var/lib/apt/lists/*
-
-WORKDIR /install
-
-COPY texlive.profile .
-
-RUN wget -qO- http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | tar -xzf- --strip-components=1 && \
-    ./install-tl -profile texlive.profile
-
-RUN apt-get update && \
-    apt-get --no-install-recommends install -y \
-        perl-modules \
-        liburi-encode-perl \
-        gnupg \
-        wget && \
-    rm -rf /var/lib/apt/lists/*
-
-ENV HOME=/tmp PATH="/usr/local/texlive/bin/x86_64-linux:$PATH"
-
-RUN tlmgr install \
-        collection-latex \
-        collection-luatex \
-        fontspec && \
-    rm -rf /usr/local/texlive/texmf-var/*
-
+FROM test-svc
 
 WORKDIR /app
+
+COPY /bin/app .
+
+#RUN chmod +w /app/generated
+#RUN chmod +r /app/documents
+RUN chmod +x /app/app
+
+ENTRYPOINT ["/app/app"]
