@@ -8,7 +8,7 @@ services:
       - dev-net
     container_name: restaurant-document-generate-function
     build:
-      dockerfile: dockerfile
+      dockerfile: ../../build/dockerfile
     volumes:
       - ./documents/:/app/documents
       - ./generated/:/app/generated
