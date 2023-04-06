@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	functions.CloudEvent("HelloGoogleIAmANewCustomer", GenerateDocument)
+	functions.CloudEvent("restaurant-document-generate-function", GenerateDocument)
 }
 
 type DocumentGenerator interface {

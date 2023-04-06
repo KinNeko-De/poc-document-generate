@@ -1,0 +1,11 @@
+FROM test-svc
+
+WORKDIR /app
+
+COPY /bin/app .
+
+#RUN chmod +w /app/generated
+#RUN chmod +r /app/documents
+RUN chmod +x /app/app
+
+ENTRYPOINT ["/app/app"]
