@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.6)  6 APR 2023 15:00
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.9)  11 APR 2023 10:09
  restricted system commands enabled.
 **documents/invoice.tex
 (./documents/invoice.tex
@@ -7,11 +7,11 @@ Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
 Lua module: lualibs 2022-10-04 2.75 ConTeXt Lua standard libraries.
 Lua module: lualibs-extended 2022-10-04 2.75 ConTeXt Lua libraries -- extended c
 ollection.
-luaotfload | conf : Root cache directory is "/usr/local/texlive/texmf-var/luatex
--cache/generic/names".
+luaotfload | conf : Root cache directory is "/usr/local/texlive/2023/texmf-var/l
+uatex-cache/generic/names".
 luaotfload | init : Loading fontloader "fontloader-2022-10-03.lua" from kpse-res
-olved path "/usr/local/texlive/texmf-dist/tex/luatex/luaotfload/fontloader-2022-
-10-03.lua".
+olved path "/usr/local/texlive/2023/texmf-dist/tex/luatex/luaotfload/fontloader-
+2022-10-03.lua".
 Lua-only attribute luaotfload@noligature = 1
 luaotfload | init : Context OpenType loader version 3.120
 Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
@@ -19,8 +19,8 @@ Inserting `luaotfload.node_processor' in `hpack_filter'.
 Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
 Inserting `luaotfload.define_font' in `define_font'.
 Lua-only attribute luaotfload_color_attribute = 2
-luaotfload | conf : Root cache directory is "/usr/local/texlive/texmf-var/luatex
--cache/generic/names".
+luaotfload | conf : Root cache directory is "/usr/local/texlive/2023/texmf-var/l
+uatex-cache/generic/names".
 Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
 Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
 Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
@@ -40,53 +40,164 @@ Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'. L3 programm
 ing layer <2023-03-30>
 Inserting `tracingstacklevels' in `input_level_string'.
-(/usr/local/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
-(/usr/local/texlive/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
-luaotfload | db : Font names database not found, generating new one.
-luaotfload | db : This can take several minutes; please be patient.)
-\c@part=\count183
-\c@section=\count184
-\c@subsection=\count185
-\c@subsubsection=\count186
-\c@paragraph=\count187
-\c@subparagraph=\count188
-\c@figure=\count189
-\c@table=\count190
-\abovecaptionskip=\skip48
-\belowcaptionskip=\skip49
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrartcl.cls
+Document Class: scrartcl 2022/10/12 v3.38 KOMA-Script document class (article)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2022/10/12 v3.38 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2022/10/12 v3.38 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2022/10/12 v3.38 KOMA-Script package (file load hooks)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2022/10/12 v3.38 KOMA-Script package (using LaTeX hooks)
+
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2022/10/12 v3.38 KOMA-Script package (logo)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 368.
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2022/10/12 v3.38 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip48
+\scr@dte@tocline@numbox=\box51
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 135.
+Class scrartcl Info: File `scrsize11pt.clo' used instead of
+(scrartcl)           file `scrsize11.clo' to setup font sizes on input line 236
+7.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
+File: scrsize11pt.clo 2022/10/12 v3.38 KOMA-Script font size class option (11pt
+)
+luaotfload | db : Font names database loaded from /usr/local/texlive/2023/texmf-
+var/luatex-cache/generic/names/luaotfload-names.luc.gz)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2022/10/12 v3.38 KOMA-Script package (type area)
+\ta@bcor=\skip49
+\ta@div=\count183
+\ta@hblk=\skip50
+\ta@vblk=\skip51
+\ta@temp=\skip52
+\footheight=\skip53
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 10
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 418.25555pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 17.3562pt
+(typearea)              \oddsidemargin  = 17.3562pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 595.80026pt
+(typearea)              \topmargin      = -25.16531pt
+(typearea)              \headheight     = 17.0pt
+(typearea)              \headsep        = 20.40001pt
+(typearea)              \topskip        = 11.0pt
+(typearea)              \footskip       = 47.6pt
+(typearea)              \baselineskip   = 13.6pt
+(typearea)              on input line 1767.
+)
+\c@part=\count184
+\c@section=\count185
+\c@subsection=\count186
+\c@subsubsection=\count187
+\c@paragraph=\count188
+\c@subparagraph=\count189
+\scr@dte@section@maxnumwidth=\skip54
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\section on input line 4994.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\section on input line 4994.
+\scr@dte@part@maxnumwidth=\skip55
+Class scrartcl Info: using compatibility default `afterindent=false'
+(scrartcl)           for `\part on input line 5002.
+\scr@dte@subsection@maxnumwidth=\skip56
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsection on input line 5012.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsection on input line 5012.
+\scr@dte@subsubsection@maxnumwidth=\skip57
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsubsection on input line 5022.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsubsection on input line 5022.
+\scr@dte@paragraph@maxnumwidth=\skip58
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\paragraph on input line 5033.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\paragraph on input line 5033.
+\scr@dte@subparagraph@maxnumwidth=\skip59
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subparagraph on input line 5043.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subparagraph on input line 5043.
+\abovecaptionskip=\skip60
+\belowcaptionskip=\skip61
+\c@pti@nb@sid@b@x=\box52
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 6211.
+\scr@dte@figure@maxnumwidth=\skip62
+\c@figure=\count190
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 6227.
+\scr@dte@table@maxnumwidth=\skip63
+\c@table=\count191
+Class scrartcl Info: Redefining `\numberline' on input line 6397.
 \bibindent=\dimen139
 )
-(/usr/local/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
+2.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
 
-(/usr/local/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: luatex.def on input line 149.
 
-(/usr/local/texlive/texmf-dist/tex/latex/graphics-def/luatex.def
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-def/luatex.def
 File: luatex.def 2022/09/22 v1.2d Graphics/color driver for luatex
 )
-(/usr/local/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(/usr/local/texlive/texmf-dist/tex/latex/tools/array.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen140
-\ar@mcellbox=\box51
+\ar@mcellbox=\box53
 \extrarowheight=\dimen141
-\NC@list=\toks16
-\extratabsurround=\skip50
-\backup@length=\skip51
-\ar@cellbox=\box52
+\NC@list=\toks17
+\extratabsurround=\skip64
+\backup@length=\skip65
+\ar@cellbox=\box54
 )
-(/usr/local/texlive/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
-(/usr/local/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2023/03/28 3.87 The Babel package
 
-(/usr/local/texlive/texmf-dist/tex/generic/babel/luababel.def
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/luababel.def
 \bbl@readstream=\read2
 \l@dumylang=\language2
 Package babel Info: Non-standard hyphenation setup on input line 118.
@@ -178,105 +289,127 @@ Package babel Info: Non-standard hyphenation setup on input line 118.
 \babelcatcodetablenum=\catcodetable12
 \bbl@pattcodes=\catcodetable13
 )
-\babel@savecnt=\count191
+\babel@savecnt=\count192
 \U@D=\dimen142
 \l@unhyphenated=\language88
 
-(/usr/local/texlive/texmf-dist/tex/generic/babel/luababel.def
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/luababel.def
 \bbl@attr@locale=\attribute4
 )
-(/usr/local/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2017/06/06 v3.3r English support from the babel system
-Package babel Info: Hyphen rules for 'canadian' set to \l@english
-(babel)             (\language0). Reported on input line 102.
-Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language22). Reported on input line 105.
-Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language22). Reported on input line 108.
-))
-(/usr/local/texlive/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
-Package babel Info: Importing font and identification data for english
-(babel)             from babel-en.ini. Reported on input line 11.
-)
-(/usr/local/texlive/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel-german/german.ldf
+Language: german 2021/02/27 v2.13 German support for babel (pre-1996 orthograph
+y)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel-german/germanb.ldf
+Language: germanb 2021/02/27 v2.13 German support for babel (pre-1996 orthograp
+hy)
+Package babel Info: Making " an active character on input line 139.
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-
+1901.tex UTF-8 German hyphenation patterns (traditional orthography)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-
+1901.tex
+German Hyphenation Patterns (Traditional Orthography) `dehypht-x' 2021-02-26 (W
+L))))))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/locale/de/babel-german.te
+x
+Package babel Info: Importing font and identification data for german
+(babel)             from babel-de-1901.ini. Reported on input line 25.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
 File: l3backend-luatex.def 2023-03-30 L3 backend support: PDF output (LuaTeX)
-\l__color_backend_stack_int=\count192
+\l__color_backend_stack_int=\count193
 Inserting `l3color' in `luaotfload.parse_color'.
-\l__pdf_internal_box=\box53
-)
-(/app/generated/invoice.aux)
+\l__pdf_internal_box=\box55
+) (/app/generated/invoice.aux)
 \openout1 = invoice.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-9.
+8.
 
-(/usr/local/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
-(/usr/local/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count193
+\scratchcounter=\count194
 \scratchdimen=\dimen143
-\scratchbox=\box54
-\nofMPsegments=\count194
-\nofMParguments=\count195
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count196
+\scratchbox=\box56
+\nofMPsegments=\count195
+\nofMParguments=\count196
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count197
 \MPscratchDim=\dimen144
-\MPnumerator=\count197
-\makeMPintoPDFobject=\count198
-\everyMPtoPDFconversion=\toks18
+\MPnumerator=\count198
+\makeMPintoPDFobject=\count199
+\everyMPtoPDFconversion=\toks19
 )
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
-[]\TU/lmr/m/n/10 {{Rech-nungsad-dresse.Ort,
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+[]\T1/lmr/m/n/10.95 {{Rech-nungs-ad-dres-se.Ort, Rech-
+ []
+
+
+Underfull \hbox (badness 4120) in paragraph at lines 42--42
+[][]\T1/lmr/m/n/10.95 Re-fe-renz-num-mer {{Re-fe-renz-num-
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 59.
+(Font)              <10.95> on input line 58.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 59.
+(Font)              <8> on input line 58.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 58.
 
-Overfull \hbox (8.09853pt too wide) in paragraph at lines 57--70
+Overfull \hbox (10.95pt too wide) in paragraph at lines 56--69
 [] [] 
  []
 
 [1
 
+{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
+Missing character: There is no € (U+20AC) in font ec-lmr10!
 ] (/app/generated/invoice.aux))
 
 Here is how much of LuaTeX's memory you used:
- 2360 strings out of 478278
+ 5680 strings out of 478278
  100000,1977958 words of node,token memory allocated
- 420 words of node memory still in use:
-   3 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 1 glyph, 6 attribute, 50 glue_spec,
- 4 attribute_list, 1 write nodes
-   avail lists: 2:588,3:84,4:40,5:86,6:48,7:1650,8:1,9:244,10:3,11:84
- 22543 multiletter control sequences out of 65536+600000
- 26 fonts using 1476743 bytes
- 43i,11n,56p,214b,214s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/texmf-dist/fonts/opentype/public/lm/lmroman7-regular.otf></u
-sr/local/texlive/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf>
-Output written on invoice.pdf (1 page, 13921 bytes).
+ 474 words of node memory still in use:
+   4 hlist, 1 vlist, 1 rule, 5 glue, 3 kern, 1 glyph, 7 attribute, 54 glue_spec,
+ 5 attribute_list, 1 write nodes
+   avail lists: 1:1,2:501,3:86,4:44,5:86,6:48,7:1710,8:1,9:252,10:7,11:136
+ 25758 multiletter control sequences out of 65536+600000
+ 26 fonts using 1428055 bytes
+ 108i,10n,100p,10635b,272s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/tex
+live/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb>
+Output written on invoice.pdf (1 page, 33717 bytes).
 
-PDF statistics: 22 PDF objects out of 1000 (max. 8388607)
- 12 compressed objects within 1 object stream
+PDF statistics: 13 PDF objects out of 1000 (max. 8388607)
+ 8 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 

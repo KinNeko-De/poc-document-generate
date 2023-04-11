@@ -1,4 +1,4 @@
-FROM test-svc
+FROM texlive/texlive
 
 WORKDIR /app
 
