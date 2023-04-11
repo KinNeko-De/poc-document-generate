@@ -1,10 +1,61 @@
 %% LyX 2.3.7 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[german]{scrartcl}
+\documentclass{scrartcl}
 \usepackage[T1]{fontenc}
 \usepackage{array}
 \usepackage{polyglossia}
+\usepackage{luacode}
 \setdefaultlanguage{german}
+
+%%InvoiceRecipient =
+%%    {
+%%    name = "Max Mustermann",
+%%    street = "Musterstraße 17",
+%%    city = "Musterstadt",
+%%    postCode = "12345",
+%%    country = "DE"
+%%}
+
+\begin{luacode}
+  invoiceRecipient = {
+    name = "Max Mustermann",
+    street = "Musterstraße 17",
+    city = "Musterstadt",
+    postCode = "12345",
+    country = "DE"
+  }
+
+  invoiceItems = {
+    [1] = {
+      description = "vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe ANS 23054303053",
+      quantity = 2,
+      netAmount = 3.35,
+      taxation = 19,
+      totalAmount = 3.99,
+      sum = 7.98,
+      currency = "EUR"
+    },
+    [2] = {
+      description = "vf ds dsf dsf dsfs fds fd skf dsk ANS 606406540",
+      quantity = 1,
+      netAmount = 9.07,
+      taxation = 19,
+      totalAmount = 10.79,
+      sum = 10.79,
+      currency = "EUR"
+    },
+    [3] = {
+      description = "Versandkosten",
+      quantity = 1,
+      netAmount = 0.00,
+      taxation = 0,
+      totalAmount = 0.00,
+      sum = 0.00,
+      currency = "EUR"
+    },
+  }
+
+\end{luacode}
 
 \makeatletter
 
@@ -28,17 +79,18 @@ Rechnung
 
 \bigskip{}
 
+\begin{minipage}[t]{0.4\columnwidth}
+\directlua{tex.print(invoiceRecipient.name)}
+
+\directlua{tex.print(invoiceRecipient.street)}
+
+\directlua{tex.print(invoiceRecipient.city)}, \directlua{tex.print(invoiceRecipient.postCode)}
+
+\directlua{tex.print(invoiceRecipient.country)}
+\end{minipage}
+\hfill{}%
 \begin{minipage}[t]{0.4\columnwidth}%
-\{\{Rechnungsadresse.Name\}\}
-
-\{\{Rechnungsadresse.Strasse\}\}
-
-\{\{Rechnungsaddresse.Ort, Rechnungsaddresse.Plz\}\}
-
-\{\{Rechnungsaddresse.Land\}\}%
-\end{minipage}\hfill{}%
-\begin{minipage}[t]{0.4\columnwidth}%
-{Referenznummer \{\{Referenznummer\}\}}{\par}
+{Referenznummer XXX}{\par}
 
 {Verkauf durch Verkäufer}{\par}
 
@@ -54,16 +106,25 @@ Rechnungsdetails
 
 \hfill{}%
 \begin{minipage}[t]{1\columnwidth}%
-\begin{tabular*}{0.99\columnwidth}{@{\extracolsep{\fill}}>{\raggedright}p{0.3\columnwidth}rrrrr}
-{Beschreibung} & {Menge} & {Stückpreis} & {USt.\%} & {Stückpreis} & {Summe}\tabularnewline
-{vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe}{\par}
-
-{ANS 23054303053} & {2} & {3,35 €} & {19\%} & {3,99 €} & {7,98 €}\tabularnewline
-{vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe}{\par}
-
-{ANS 606406540} & {1} & {9,07 €} & {19\%} & {10,79} & {10,79 €}\tabularnewline
-{Versandkosten} &  & {0,00 €} &  & {0,00 €} & {0,00 €}\tabularnewline
-\end{tabular*}%
+    \begin{luacode}
+    tex.print("\\begin{tabular*}{0.99\\columnwidth}{@{\\extracolsep{\\fill}}>{\\raggedright}p{0.3\\columnwidth}rrrrr}")
+    tex.print("{Beschreibung} & {Menge} & {Stückpreis} & {USt.\\%} & {Stückpreis} & {Summe}\\tabularnewline")
+    for i, item in ipairs(invoiceItems) do
+      tex.sprint("{" ..  item.description .. "}")
+      tex.sprint(" & " )
+      tex.sprint("{" ..  item.quantity .. "}")
+      tex.sprint(" & " )
+      tex.sprint("{" ..  item.netAmount .. " €}")
+      tex.sprint(" & " )
+      tex.sprint("{" ..  item.taxation .. " \\%}")
+      tex.sprint(" & " )
+      tex.sprint("{" ..  item.totalAmount .. " €}")
+      tex.sprint(" & " )
+      tex.sprint("{" ..  item.sum .. " €}")
+      tex.print("\\tabularnewline")
+    end
+    tex.print("\\end{tabular*}")
+  \end{luacode}
 \end{minipage}
 
 \hfill{}%
@@ -73,6 +134,6 @@ Gesamtpreis%
 \noindent\begin{minipage}[t]{0.1\columnwidth}%
 \begin{flushright}
 18,77 €
-\par\end{flushright}%
+\end{flushright}%
 \end{minipage}
 \end{document}

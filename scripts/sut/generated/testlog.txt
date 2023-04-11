@@ -1,1 +1,36 @@
-2023/04/11 10:42:25 Document generated.
+2023/04/11 13:04:41 Document generated.
+2023/04/11 13:06:11 Document generated.
+2023/04/11 13:06:40 Document generated.
+2023/04/11 13:09:50 Document generated.
+2023/04/11 13:22:01 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:22:14 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:23:38 Document generated.
+2023/04/11 13:24:33 Document generated.
+2023/04/11 13:25:08 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:25:39 Document generated.
+2023/04/11 13:28:02 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:28:24 Document generated.
+2023/04/11 13:29:14 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:30:27 Document generated.
+2023/04/11 13:33:46 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:34:55 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:38:44 Document generated.
+2023/04/11 13:44:34 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:45:27 Document generated.
+2023/04/11 13:45:57 Document generated.
+2023/04/11 13:50:49 Document generated.
+2023/04/11 13:51:23 Document generated.
+2023/04/11 13:54:18 Document generated.
+2023/04/11 13:55:36 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:55:47 Document generated.
+2023/04/11 13:56:52 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 13:57:22 Document generated.
+2023/04/11 13:59:34 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 14:00:19 Document generated.
+2023/04/11 14:00:35 Document generated.
+2023/04/11 14:03:27 Document generated.
+2023/04/11 14:05:50 Document generated.
+2023/04/11 14:09:24 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 14:09:49 error executiong /usr/bin/lualatex -output-directory=/app/generated documents/invoice.tex exit status 1
+2023/04/11 14:09:59 Document generated.
+2023/04/11 14:10:51 Document generated.
