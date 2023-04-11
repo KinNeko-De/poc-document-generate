@@ -2,9 +2,9 @@
 %% Do not edit unless you really know what you are doing.
 \documentclass[german]{scrartcl}
 \usepackage[T1]{fontenc}
-\usepackage{color}
 \usepackage{array}
-\usepackage{textcomp}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
 
 \makeatletter
 
@@ -14,7 +14,6 @@
 
 \makeatother
 
-\usepackage[german]{babel}
 \begin{document}
 \begin{minipage}[t]{0.4\columnwidth}%
 \begin{flushleft}
@@ -39,14 +38,14 @@ Rechnung
 \{\{Rechnungsaddresse.Land\}\}%
 \end{minipage}\hfill{}%
 \begin{minipage}[t]{0.4\columnwidth}%
-\textcolor{black}{Referenznummer \{\{Referenznummer\}\}}{\par}
+{Referenznummer \{\{Referenznummer\}\}}{\par}
 
-\textcolor{black}{Verkauf durch Verkäufer}{\par}
+{Verkauf durch Verkäufer}{\par}
 
-\textcolor{black}{\rule[0.5ex]{1\columnwidth}{1pt}}{\par}
+{\rule[0.5ex]{1\columnwidth}{1pt}}{\par}
 
-\textcolor{black}{Rechnnungsdatum /}\\
-\textcolor{black}{Lieferdatum 4.9.65}{\par}%
+{Rechnungsdatum /}\\
+{Lieferdatum 4.9.65}{\par}%
 \end{minipage}
 
 \vspace{10ex}
