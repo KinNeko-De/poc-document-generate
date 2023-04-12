@@ -16,7 +16,11 @@
 %%    country = "DE"
 %%}
 
-\begin{luacode}
+\begin{luacode*}
+  invoice = {
+    deliveredOn = {year=2020, month=4, day=13}
+  }
+
   invoiceRecipient = {
     name = "Max Mustermann",
     street = "Musterstraße 17",
@@ -54,8 +58,7 @@
       currency = "EUR"
     },
   }
-
-\end{luacode}
+\end{luacode*}
 
 \makeatletter
 
@@ -97,7 +100,7 @@ Rechnung
 {\rule[0.5ex]{1\columnwidth}{1pt}}{\par}
 
 {Rechnungsdatum /}\\
-{Lieferdatum 4.9.65}{\par}%
+{Lieferdatum \luaexec{tex.sprint(string.format("\%02d.\%02d.\%04d", invoice.deliveredOn.day, invoice.deliveredOn.month, invoice.deliveredOn.year))}}{\par}%
 \end{minipage}
 
 \vspace{10ex}
@@ -108,20 +111,14 @@ Rechnungsdetails
 \begin{minipage}[t]{1\columnwidth}%
     \begin{luacode}
     tex.print("\\begin{tabular*}{0.99\\columnwidth}{@{\\extracolsep{\\fill}}>{\\raggedright}p{0.3\\columnwidth}rrrrr}")
-    tex.print("{Beschreibung} & {Menge} & {Stückpreis} & {USt.\\%} & {Stückpreis} & {Summe}\\tabularnewline")
+    tex.print("{Beschreibung} & {Menge} & {Stückpreis} & {USt. \\%} & {Stückpreis} & {Summe}\\tabularnewline")
     for i, item in ipairs(invoiceItems) do
-      tex.sprint("{" ..  item.description .. "}")
-      tex.sprint(" & " )
-      tex.sprint("{" ..  item.quantity .. "}")
-      tex.sprint(" & " )
-      tex.sprint("{" ..  item.netAmount .. " €}")
-      tex.sprint(" & " )
-      tex.sprint("{" ..  item.taxation .. " \\%}")
-      tex.sprint(" & " )
-      tex.sprint("{" ..  item.totalAmount .. " €}")
-      tex.sprint(" & " )
-      tex.sprint("{" ..  item.sum .. " €}")
-      tex.print("\\tabularnewline")
+      tex.sprint("{", item.description, "}", " & ")
+      tex.sprint("{", item.quantity, "}", " & ")
+      tex.sprint("{", item.netAmount, " €}", " & ")
+      tex.sprint("{", item.taxation, " \\%}", " & ")
+      tex.sprint("{", item.totalAmount, " €}", " & ")
+      tex.print("{", item.sum, " €}", "\\tabularnewline")
     end
     tex.print("\\end{tabular*}")
   \end{luacode}
