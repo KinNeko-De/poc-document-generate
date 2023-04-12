@@ -1,3 +1,6 @@
 2023/04/12 14:35:02 error executiong /usr/bin/lualatex -output-directory=./generated invoice.tex exit status 1
 2023/04/12 14:37:10 error executiong /usr/bin/lualatex -output-directory=./generated invoice.tex exit status 1
 2023/04/12 14:38:19 Document generated.
+2023/04/12 15:14:20 Document generated.
+2023/04/12 15:15:02 Document generated.
+2023/04/12 15:15:46 Document generated.
