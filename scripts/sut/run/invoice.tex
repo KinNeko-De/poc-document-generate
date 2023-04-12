@@ -7,62 +7,11 @@
 \usepackage{luacode}
 \setdefaultlanguage{german}
 
-%%InvoiceRecipient =
-%%    {
-%%    name = "Max Mustermann",
-%%    street = "Musterstraße 17",
-%%    city = "Musterstadt",
-%%    postCode = "12345",
-%%    country = "DE"
-%%}
-
-\begin{luacode*}
-  invoice = {
-    deliveredOn = {year=2020, month=4, day=13}
-  }
-
-  invoiceRecipient = {
-    name = "Max Mustermann",
-    street = "Musterstraße 17",
-    city = "Musterstadt",
-    postCode = "12345",
-    country = "DE"
-  }
-
-  invoiceItems = {
-    [1] = {
-      description = "vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe ANS 23054303053",
-      quantity = 2,
-      netAmount = 3.35,
-      taxation = 19,
-      totalAmount = 3.99,
-      sum = 7.98,
-      currency = "EUR"
-    },
-    [2] = {
-      description = "vf ds dsf dsf dsfs fds fd skf dsk ANS 606406540",
-      quantity = 1,
-      netAmount = 9.07,
-      taxation = 19,
-      totalAmount = 10.79,
-      sum = 10.79,
-      currency = "EUR"
-    },
-    [3] = {
-      description = "Versandkosten",
-      quantity = 1,
-      netAmount = 0.00,
-      taxation = 0,
-      totalAmount = 0.00,
-      sum = 0.00,
-      currency = "EUR"
-    },
-  }
-\end{luacode*}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
 %% Because html converters don't know tabularnewline
 \providecommand{\tabularnewline}{\\}
+
+\directlua{ model = require("./invoice.lua")}
 
 \begin{document}
 \begin{minipage}[t]{0.4\columnwidth}%
@@ -79,13 +28,13 @@ Rechnung
 \bigskip{}
 
 \begin{minipage}[t]{0.4\columnwidth}
-\directlua{tex.print(invoiceRecipient.name)}
+\directlua{tex.print(model.invoiceRecipient.name)}
 
-\directlua{tex.print(invoiceRecipient.street)}
+\directlua{tex.print(model.invoiceRecipient.street)}
 
-\directlua{tex.print(invoiceRecipient.city)}, \directlua{tex.print(invoiceRecipient.postCode)}
+\directlua{tex.print(model.invoiceRecipient.city)}, \directlua{tex.print(model.invoiceRecipient.postCode)}
 
-\directlua{tex.print(invoiceRecipient.country)}
+\directlua{tex.print(model.invoiceRecipient.country)}
 \end{minipage}
 \hfill{}%
 \begin{minipage}[t]{0.4\columnwidth}%
@@ -96,7 +45,7 @@ Rechnung
 {\rule[0.5ex]{1\columnwidth}{1pt}}{\par}
 
 {Rechnungsdatum /}\\
-{Lieferdatum \luaexec{tex.sprint(string.format("\%02d.\%02d.\%04d", invoice.deliveredOn.day, invoice.deliveredOn.month, invoice.deliveredOn.year))}}{\par}%
+{Lieferdatum \luaexec{tex.sprint(string.format("\%02d.\%02d.\%04d", model.invoice.deliveredOn.day, model.invoice.deliveredOn.month, model.invoice.deliveredOn.year))}}{\par}%
 \end{minipage}
 
 \vspace{10ex}
@@ -108,7 +57,7 @@ Rechnungsdetails
     \begin{luacode}
     tex.print("\\begin{tabular*}{0.99\\columnwidth}{@{\\extracolsep{\\fill}}>{\\raggedright}p{0.3\\columnwidth}rrrrr}")
     tex.print("{Beschreibung} & {Menge} & {Stückpreis} & {USt. \\%} & {Stückpreis} & {Summe}\\tabularnewline")
-    for i, item in ipairs(invoiceItems) do
+    for i, item in ipairs(model.invoiceItems) do
       tex.sprint("{", item.description, "}", " & ")
       tex.sprint("{", item.quantity, "}", " & ")
       tex.sprint("{", item.netAmount, " €}", " & ")

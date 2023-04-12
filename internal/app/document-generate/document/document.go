@@ -9,10 +9,11 @@ type DocumentGenerator struct {
 }
 
 func (_ DocumentGenerator) GenerateDocument() {
-	document := "documents/invoice.tex"
-	output := "/app/generated"
+	document := "invoice.tex"
+	output := "./generated"
 	outputParameter := "-output-directory=" + output
 	cmd := exec.Command("lualatex", outputParameter, document)
+	cmd.Dir = "/app/run"
 	err := cmd.Run()
 	if err != nil {
 		log.Fatalf("error executiong %v %v", cmd, err)

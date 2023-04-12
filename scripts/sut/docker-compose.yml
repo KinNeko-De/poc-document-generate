@@ -10,8 +10,8 @@ services:
     build:
       dockerfile: ../../build/dockerfile
     volumes:
-      - ./documents/:/app/documents
-      - ./generated/:/app/generated
+      - ./run/:/app/run
+      - ./run/generated/:/app/run/generated
 networks:
   dev-net:
     name: restaurant-dev-net
