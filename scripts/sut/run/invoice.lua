@@ -12,7 +12,7 @@ local invoiceRecipientV1 = {
 
 local invoiceItemsV1 = {
   [1] = {
-    description = "vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe \\\\ ANS 23054303053",
+    description = "vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe\\\\ANS 23054303053",
     quantity = 2,
     netAmount = 3.35,
     taxation = 19,
@@ -21,7 +21,7 @@ local invoiceItemsV1 = {
     currency = "EUR"
   },
   [2] = {
-    description = "vf ds dsf dsf dsfs fds fd skf dsk \\\\ ANS 606406540",
+    description = "vf ds dsf dsf dsfs fds fd skf dsk\\\\ANS 606406540",
     quantity = 1,
     netAmount = 9.07,
     taxation = 19,
