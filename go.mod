@@ -5,9 +5,11 @@ go 1.20
 require (
 	github.com/GoogleCloudPlatform/functions-framework-go v1.6.1
 	github.com/cloudevents/sdk-go/v2 v2.13.0
+	github.com/google/go-cmp v0.5.6
 	github.com/google/uuid v1.3.0
 	github.com/kinneko-de/test-api-contract/golang/kinnekode/protobuf v0.2.1-document-request.46
 	github.com/kinneko-de/test-api-contract/golang/kinnekode/restaurant v0.2.2-document-request.6
+	google.golang.org/protobuf v1.28.1
 )
 
 require (
@@ -17,5 +19,4 @@ require (
 	go.uber.org/atomic v1.4.0 // indirect
 	go.uber.org/multierr v1.1.0 // indirect
 	go.uber.org/zap v1.10.0 // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
 )
