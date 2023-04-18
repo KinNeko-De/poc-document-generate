@@ -49,7 +49,7 @@ Rechnung
 {\rule[0.5ex]{1\columnwidth}{1pt}}{\par}
 
 {Rechnungsdatum /}\\
-{Lieferdatum \luaexec{tex.sprint(string.format("\%02d.\%02d.\%04d", model.invoice.deliveredOn.day, model.invoice.deliveredOn.month, model.invoice.deliveredOn.year))}}{\par}%
+{Lieferdatum \luaexec{tex.sprint(os.date("\%d.\%m.\%Y", model.invoice.deliveredOn.seconds))}}{\par}%
 \end{minipage}
 
 \vspace{10ex}

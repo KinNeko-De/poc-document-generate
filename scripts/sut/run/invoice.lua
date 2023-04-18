@@ -1,5 +1,5 @@
 local invoiceV1 = {
-  deliveredOn = {year=2020, month=4, day=13},
+  deliveredOn = {seconds = "1586736000"},
 
   recipient = {
     name = "Max Mustermann",

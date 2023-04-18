@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.9)  14 APR 2023 12:32
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.9)  18 APR 2023 11:12
  restricted system commands enabled.
 **invoice.tex
 (./invoice.tex
@@ -328,12 +328,12 @@ braces):
 >  {german/Localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {german/DefineCommandsCmd}  =>  {xpg_define_language_commands:e}.
 Module polyglossia Info: Language data for german
-(polyglossia)            loader	loadhyph-de-1901.tex
-(polyglossia)            synonyms	
-(polyglossia)            lefthyphenmin	2
 (polyglossia)            hyphenation	
+(polyglossia)            loader	loadhyph-de-1901.tex
 (polyglossia)            patterns	hyph-de-1901.pat.txt
-(polyglossia)            righthyphenmin	2 on input line 12
+(polyglossia)            synonyms	
+(polyglossia)            righthyphenmin	2
+(polyglossia)            lefthyphenmin	2 on input line 12
 Module polyglossia Info: Language german was not yet loaded; created with id 2 o
 n input line 12
 Package polyglossia Info: Option: German, spelling=new.
@@ -351,9 +351,9 @@ Package babel Info: Making " an active character on input line 179.
 )
 Package polyglossia Info: Default language is german.
 
-No file invoice.aux.
-
+(./generated/invoice.aux)
 \openout1 = invoice.aux
+
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
@@ -365,6 +365,7 @@ LaTeX Font Info:    ... okay on input line 20.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 2
 0.
+
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
@@ -530,12 +531,12 @@ LaTeX Info: Redefining \rmfamily on input line 20.
 LaTeX Info: Redefining \sffamily on input line 20.
 LaTeX Info: Redefining \ttfamily on input line 20.
 Module polyglossia Info: Language data for ngerman
-(polyglossia)            loader	loadhyph-de-1996.tex
-(polyglossia)            synonyms	
-(polyglossia)            lefthyphenmin	2
 (polyglossia)            hyphenation	
+(polyglossia)            loader	loadhyph-de-1996.tex
 (polyglossia)            patterns	hyph-de-1996.pat.txt
-(polyglossia)            righthyphenmin	2 on input line 20
+(polyglossia)            synonyms	
+(polyglossia)            righthyphenmin	2
+(polyglossia)            lefthyphenmin	2 on input line 20
 Module polyglossia Info: Language ngerman was not yet loaded; created with id 3 
 on input line 20
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -680,7 +681,7 @@ LaTeX Info: Redefining \ttfamily on input line 5.
 ))
 
 Here is how much of LuaTeX's memory you used:
- 7772 strings out of 478278
+ 7777 strings out of 478278
  100000,1977958 words of node,token memory allocated
  436 words of node memory still in use:
    3 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 1 glyph, 4 attribute, 54 glue_spec,
