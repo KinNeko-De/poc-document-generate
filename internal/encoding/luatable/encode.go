@@ -12,7 +12,7 @@ import (
 // kind represents an encoding type.
 type kind uint8
 
-const KeyAssign = " = "
+const KeyAssign = "="
 const NullValue = "nil"
 const BoolTrue = "true"
 const BoolFalse = "false"
@@ -25,7 +25,7 @@ const TableClose = "}"
 
 const (
 	_ kind = (1 << iota) / 2
-	name
+	key
 	scalar
 	objectOpen
 	objectClose
@@ -210,12 +210,12 @@ func (e *Encoder) EndObject() {
 }
 
 func (e *Encoder) WriteKey(s string) error {
-	e.prepareNext(name)
+	e.prepareNext(key)
 	var err error
 	if e.out, err = appendString(e.out, s); err != nil {
 		return err
 	}
-	e.out = append(e.out, KeyAssign...)
+	e.WriteKeyAssign()
 	return nil
 }
 
@@ -237,6 +237,24 @@ func (e *Encoder) EndString() {
 	e.out = append(e.out, EndString...)
 }
 
+func (e *Encoder) WriteIndexedList(i int) {
+	e.prepareNext(key)
+	e.out = append(e.out, "["...)
+	e.out = append(e.out, strconv.FormatInt(int64(i), 10)...)
+	e.out = append(e.out, "]"...)
+	e.WriteKeyAssign()
+}
+
+func (e *Encoder) WriteKeyAssign() {
+	if len(e.indent) != 0 {
+		e.out = append(e.out, " "...)
+	}
+	e.out = append(e.out, KeyAssign...)
+	if len(e.indent) != 0 {
+		e.out = append(e.out, " "...)
+	}
+}
+
 // prepareNext adds possible comma and indentation for the next value based
 // on last type and indent option. It also updates lastKind to next.
 func (e *Encoder) prepareNext(next kind) {
@@ -248,7 +266,7 @@ func (e *Encoder) prepareNext(next kind) {
 	if len(e.indent) == 0 {
 		// Need to add comma on the following condition.
 		if e.lastKind&(scalar|objectClose|arrayClose) != 0 &&
-			next&(name|scalar|objectOpen|arrayOpen) != 0 {
+			next&(key|scalar|objectOpen|arrayOpen) != 0 {
 			e.out = append(e.out, ',')
 		}
 		return
@@ -266,7 +284,7 @@ func (e *Encoder) prepareNext(next kind) {
 	case e.lastKind&(scalar|objectClose|arrayClose) != 0:
 		switch {
 		// If next type is either a value or name, add comma and newline.
-		case next&(name|scalar|objectOpen|arrayOpen) != 0:
+		case next&(key|scalar|objectOpen|arrayOpen) != 0:
 			e.out = append(e.out, ',', '\n')
 
 		// If next type is a closing object or array, adjust indentation.
@@ -275,8 +293,6 @@ func (e *Encoder) prepareNext(next kind) {
 			e.out = append(e.out, '\n')
 		}
 		e.out = append(e.out, e.indents...)
-
-	case e.lastKind&name != 0:
-		e.out = append(e.out, ' ')
 	}
+
 }

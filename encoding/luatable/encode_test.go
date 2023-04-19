@@ -19,7 +19,7 @@ func TestFormatPositive(t *testing.T) {
 		expected string
 	}{
 		{
-			desc: "first test",
+			desc: "Message with string",
 			input: &restaurantApi.GenerateDocumentV1_Document_InvoiceV1_Recipient{
 				Name:     "Max Mustermann",
 				Street:   "Musterstraße 17",
@@ -27,7 +27,7 @@ func TestFormatPositive(t *testing.T) {
 				PostCode: "12345",
 				Country:  "DE",
 			},
-			expected: "Recipient = {name = \"Max Mustermann\",street = \"Musterstraße 17\",city = \"Musterstadt\",postCode = \"12345\",country = \"DE\"}",
+			expected: "Recipient={name=\"Max Mustermann\",street=\"Musterstraße 17\",city=\"Musterstadt\",postCode=\"12345\",country=\"DE\"}",
 		},
 		{
 			desc: "long test",
@@ -68,12 +68,12 @@ func TestFormatPositive(t *testing.T) {
 					},
 				},
 			},
+			option:   luatable.MarshalOptions{Multiline: true},
 			expected: "InvoiceV1 = {\n  deliveredOn = {year=2020, month=4, day=13},\n\n  recipient = {\n    name = \"Max Mustermann\",\n    street = \"Musterstraße 17\",\n    city = \"Musterstadt\",\n    postCode = \"12345\",\n    country = \"DE\"\n  },\n\n  items = {\n    [1] = {\n      description = \"vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe\\\\\\\\ANS 23054303053\",\n      quantity = 2,\n      netAmount = 3.35,\n      taxation = 19,\n      totalAmount = 3.99,\n      sum = 7.98,\n      currency = \"EUR\"\n    },\n    [2] = {\n      description = \"vf ds dsf dsf dsfs fds fd skf dsk\\\\\\\\ANS 606406540\",\n      quantity = 1,\n      netAmount = 9.07,\n      taxation = 19,\n      totalAmount = 10.79,\n      sum = 10.79,\n      currency = \"EUR\"\n    },\n    [3] = {\n      description = \"Versandkosten\",\n      quantity = 1,\n      netAmount = 0.00,\n      taxation = 0,\n      totalAmount = 0.00,\n      sum = 0.00,\n      currency = \"EUR\"\n    }\n  }\n}",
 		},
 	}
 
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.desc, func(t *testing.T) {
 			b, err := tt.option.Marshal(tt.input)
 			if err != nil {

@@ -61,7 +61,7 @@ Rechnungsdetails
     \begin{luacode}
     tex.print("\\begin{tabular*}{0.99\\columnwidth}{@{\\extracolsep{\\fill}}>{\\raggedright}p{0.3\\columnwidth}rrrrr}")
     tex.print("{Beschreibung} & {Menge} & {Stückpreis} & {USt. \\%} & {Stückpreis} & {Summe}\\tabularnewline")
-    for i, item in ipairs(model.invoice.items) do
+    for _, item in ipairs(model.invoice.items) do
       tex.sprint("{", item.description, "}", " & ")
       tex.sprint("{", item.quantity, "}", " & ")
       tex.sprint("{", item.netAmount, " €}", " & ")

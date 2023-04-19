@@ -1,6 +1,8 @@
-local invoiceV1 = {
-  deliveredOn = {seconds = "1586736000"},
-
+local InvoiceV1 = {
+  deliveredOn = {
+    seconds = "1586736000"
+  },
+  currencyCode =  "EUR",
   recipient = {
     name = "Max Mustermann",
     street = "Musterstraße 17",
@@ -8,7 +10,6 @@ local invoiceV1 = {
     postCode = "12345",
     country = "DE"
   },
-
   items = {
     [1] = {
       description = "vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe\\\\ANS 23054303053",
@@ -17,7 +18,6 @@ local invoiceV1 = {
       taxation = 19,
       totalAmount = 3.99,
       sum = 7.98,
-      currency = "EUR"
     },
     [2] = {
       description = "vf ds dsf dsf dsfs fds fd skf dsk\\\\ANS 606406540",
@@ -26,7 +26,6 @@ local invoiceV1 = {
       taxation = 19,
       totalAmount = 10.79,
       sum = 10.79,
-      currency = "EUR"
     },
     [3] = {
       description = "Versandkosten",
@@ -35,12 +34,11 @@ local invoiceV1 = {
       taxation = 0,
       totalAmount = 0.00,
       sum = 0.00,
-      currency = "EUR"
     }
   }
 }
 
-return { invoice = invoiceV1 }
+return { invoice = InvoiceV1 }
 
 
 

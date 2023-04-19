@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.9)  18 APR 2023 11:12
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.9)  19 APR 2023 15:04
  restricted system commands enabled.
 **invoice.tex
 (./invoice.tex
@@ -328,12 +328,12 @@ braces):
 >  {german/Localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {german/DefineCommandsCmd}  =>  {xpg_define_language_commands:e}.
 Module polyglossia Info: Language data for german
-(polyglossia)            hyphenation	
-(polyglossia)            loader	loadhyph-de-1901.tex
-(polyglossia)            patterns	hyph-de-1901.pat.txt
 (polyglossia)            synonyms	
 (polyglossia)            righthyphenmin	2
-(polyglossia)            lefthyphenmin	2 on input line 12
+(polyglossia)            hyphenation	
+(polyglossia)            lefthyphenmin	2
+(polyglossia)            loader	loadhyph-de-1901.tex
+(polyglossia)            patterns	hyph-de-1901.pat.txt on input line 12
 Module polyglossia Info: Language german was not yet loaded; created with id 2 o
 n input line 12
 Package polyglossia Info: Option: German, spelling=new.
@@ -351,7 +351,20 @@ Package babel Info: Making " an active character on input line 179.
 )
 Package polyglossia Info: Default language is german.
 
-(./generated/invoice.aux)
+(./generated/invoice.aux
+LaTeX Info: Redefining \rmfamily on input line 5.
+LaTeX Info: Redefining \sffamily on input line 5.
+LaTeX Info: Redefining \ttfamily on input line 5.
+Module polyglossia Info: Language data for ngerman
+(polyglossia)            synonyms	
+(polyglossia)            righthyphenmin	2
+(polyglossia)            hyphenation	
+(polyglossia)            lefthyphenmin	2
+(polyglossia)            loader	loadhyph-de-1996.tex
+(polyglossia)            patterns	hyph-de-1996.pat.txt on input line 5
+Module polyglossia Info: Language ngerman was not yet loaded; created with id 3 
+on input line 5
+)
 \openout1 = invoice.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -530,15 +543,8 @@ The property list \__xpg_alias contains the pairs (without outer braces):
 LaTeX Info: Redefining \rmfamily on input line 20.
 LaTeX Info: Redefining \sffamily on input line 20.
 LaTeX Info: Redefining \ttfamily on input line 20.
-Module polyglossia Info: Language data for ngerman
-(polyglossia)            hyphenation	
-(polyglossia)            loader	loadhyph-de-1996.tex
-(polyglossia)            patterns	hyph-de-1996.pat.txt
-(polyglossia)            synonyms	
-(polyglossia)            righthyphenmin	2
-(polyglossia)            lefthyphenmin	2 on input line 20
-Module polyglossia Info: Language ngerman was not yet loaded; created with id 3 
-on input line 20
+Module polyglossia Info: Language ngerman already loaded; id is 3 on input line 
+20
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 1.
 LaTeX Font Info:    External font `cmex10' loaded for size

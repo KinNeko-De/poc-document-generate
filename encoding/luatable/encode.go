@@ -1,7 +1,6 @@
 package luatable
 
 import (
-	"encoding/base64"
 	"errors"
 	"fmt"
 	"github.com/KinNeko-De/restaurant-document-generate-function/internal/encoding/luatable"
@@ -166,7 +165,6 @@ func (e encodingRun) marshalValue(val protoreflect.Value, fd protoreflect.FieldD
 // all scalar types, enums, messages, and groups.
 func (e encodingRun) marshalSingular(val protoreflect.Value, fd protoreflect.FieldDescriptor) error {
 	if !val.IsValid() {
-		e.WriteNull()
 		return nil
 	}
 
@@ -196,22 +194,10 @@ func (e encodingRun) marshalSingular(val protoreflect.Value, fd protoreflect.Fie
 		e.WriteFloat(val.Float(), 64)
 
 	case protoreflect.BytesKind:
-		e.WriteString(base64.StdEncoding.EncodeToString(val.Bytes()))
+		errors.New("Bytes are not supported yet.")
 
 	case protoreflect.EnumKind:
 		errors.New("Enum are not supported yet.")
-		/*
-			if fd.Enum().FullName() == genid.NullValue_enum_fullname {
-				e.WriteNull()
-			} else {
-				desc := fd.Enum().Values().ByNumber(val.Enum())
-				if e.opts.UseEnumNumbers || desc == nil {
-					e.WriteInt(int64(val.Enum()))
-				} else {
-					e.WriteString(string(desc.Name()))
-				}
-			}
-		*/
 
 	case protoreflect.MessageKind, protoreflect.GroupKind:
 		if err := e.marshalMessage(val.Message()); err != nil {
@@ -226,11 +212,13 @@ func (e encodingRun) marshalSingular(val protoreflect.Value, fd protoreflect.Fie
 
 // marshalList marshals the given protoreflect.List.
 func (e encodingRun) marshalList(list protoreflect.List, fd protoreflect.FieldDescriptor) error {
+
 	e.StartArray()
 	defer e.EndArray()
 
 	for i := 0; i < list.Len(); i++ {
 		item := list.Get(i)
+		e.Encoder.WriteIndexedList(i + 1)
 		if err := e.marshalSingular(item, fd); err != nil {
 			return err
 		}
