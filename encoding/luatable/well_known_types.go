@@ -24,7 +24,7 @@ func wellKnownTypesMarshaler(fullName protoreflect.FullName) (marshalFunc, error
 			// Timestamp can be converted to normal table because it can be converted to os.date and os.time with build in function in lua
 			return nil, nil
 		default:
-			return nil, errors.New(string(fullName) + " is not supported yet.")
+			return nil, errors.New(string(fullName) + " is not supported yet")
 		}
 	}
 	return nil, nil
