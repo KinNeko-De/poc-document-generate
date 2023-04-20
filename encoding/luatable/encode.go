@@ -43,6 +43,8 @@ type (
 		// remarks: does not work for the initial message because we do not have a fieldDescriptor there
 		KeyName keyName
 
+		UserConverters []UserConverter
+
 		// UseEnumNumbers emits enum values as numbers.
 		UseEnumNumbers bool
 
@@ -125,6 +127,16 @@ type encodingRun struct {
 // marshalMessage marshals the message and fields in the given protoreflect.Message.
 // inject the table name as property of the field descriptor if there is one, otherwise set on. Json names are not populated in the Descriptor :/
 func (e encodingRun) marshalMessage(m protoreflect.Message) error {
+	for _, userConverter := range e.opts.UserConverters {
+		myUserConverter, unsupportedTypeError := userConverter.Handle(m.Descriptor().FullName())
+		if unsupportedTypeError != nil {
+			return unsupportedTypeError
+		}
+		if myUserConverter != nil {
+			return myUserConverter(e, m)
+		}
+	}
+
 	specialMarshal, unsupportedTypeError := wellKnownTypesMarshaler(m.Descriptor().FullName())
 	if unsupportedTypeError != nil {
 		return unsupportedTypeError
