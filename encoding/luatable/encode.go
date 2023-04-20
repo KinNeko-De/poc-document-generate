@@ -78,15 +78,7 @@ func (o MarshalOptions) marshal(m proto.Message) ([]byte, error) {
 		return nil, errors.New("message can not be nil")
 	}
 
-	if o.Multiline && o.Indent == "" {
-		o.Indent = defaultIndent
-	}
-	if o.Resolver == nil {
-		o.Resolver = protoregistry.GlobalTypes
-	}
-	if o.KeyName == nil {
-		o.KeyName = jsonName{}
-	}
+	SetDefaults(&o)
 
 	encoder, err := luatable.NewEncoder(o.Indent)
 	if err != nil {
@@ -101,6 +93,18 @@ func (o MarshalOptions) marshal(m proto.Message) ([]byte, error) {
 	}
 
 	return enc.Bytes(), nil
+}
+
+func SetDefaults(o *MarshalOptions) {
+	if o.Multiline && o.Indent == "" {
+		o.Indent = defaultIndent
+	}
+	if o.Resolver == nil {
+		o.Resolver = protoregistry.GlobalTypes
+	}
+	if o.KeyName == nil {
+		o.KeyName = jsonName{}
+	}
 }
 
 func marshalRootMessage(m protoreflect.Message, enc encodingRun) ([]byte, error) {
@@ -183,7 +187,7 @@ func (e encodingRun) marshalSingular(val protoreflect.Value, fd protoreflect.Fie
 	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Uint64Kind,
 		protoreflect.Sfixed64Kind, protoreflect.Fixed64Kind:
 		// 64-bit integers are written out as JSON string.
-		e.WriteString(val.String())
+		e.WriteNumber(val.String())
 
 	case protoreflect.FloatKind:
 		// Encoder.WriteFloat handles the special numbers NaN and infinites.

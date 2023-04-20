@@ -199,6 +199,11 @@ func (e *Encoder) WriteUint(n uint64) {
 	e.out = append(e.out, strconv.FormatUint(n, 10)...)
 }
 
+func (e *Encoder) WriteNumber(number string) {
+	e.prepareNext(scalar)
+	e.out = append(e.out, number...)
+}
+
 func (e *Encoder) StartObject() {
 	e.prepareNext(objectOpen)
 	e.out = append(e.out, TableOpen...)
