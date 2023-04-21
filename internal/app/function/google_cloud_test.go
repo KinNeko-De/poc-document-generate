@@ -3,6 +3,7 @@ package function
 import (
 	"context"
 	"github.com/cloudevents/sdk-go/v2/event"
+	restaurantApi "github.com/kinneko-de/test-api-contract/golang/kinnekode/restaurant/document"
 	"log"
 	"testing"
 )
@@ -10,7 +11,7 @@ import (
 type MockGenerator struct {
 }
 
-func (_ MockGenerator) GenerateDocument() {
+func (_ MockGenerator) GenerateDocument(*restaurantApi.GenerateDocumentV1) {
 	log.Println("Dummy implementation that does nothing.")
 }
 

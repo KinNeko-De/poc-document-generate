@@ -5,6 +5,7 @@ import (
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/KinNeko-De/restaurant-document-generate-function/internal/app/document-generate/document"
 	"github.com/cloudevents/sdk-go/v2/event"
+	restaurantApi "github.com/kinneko-de/test-api-contract/golang/kinnekode/restaurant/document"
 )
 
 func init() {
@@ -12,7 +13,7 @@ func init() {
 }
 
 type DocumentGenerator interface {
-	GenerateDocument()
+	GenerateDocument(*restaurantApi.GenerateDocumentV1)
 }
 
 func GenerateDocument(ctx context.Context, e event.Event) error {
@@ -22,6 +23,6 @@ func GenerateDocument(ctx context.Context, e event.Event) error {
 func GenerateDocumentUsingGenerator(ctx context.Context, e event.Event, generator DocumentGenerator) error {
 	// content := e.Data()
 	// TODO parse protobuf
-	generator.GenerateDocument()
+	// generator.GenerateDocument()
 	return nil
 }

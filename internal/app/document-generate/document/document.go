@@ -1,26 +1,21 @@
 package document
 
 import (
-	"github.com/google/uuid"
-	protobuf "github.com/kinneko-de/test-api-contract/golang/kinnekode/protobuf"
+	"github.com/KinNeko-De/restaurant-document-generate-function/encoding/luatable"
 	restaurantApi "github.com/kinneko-de/test-api-contract/golang/kinnekode/restaurant/document"
-	"google.golang.org/protobuf/types/known/timestamppb"
+	"google.golang.org/protobuf/proto"
 	"io"
 	"log"
 	"os"
 	"os/exec"
 	"path"
 	"path/filepath"
-	"time"
 )
 
 type DocumentGenerator struct {
 }
 
-func (documentGenerator DocumentGenerator) GenerateDocument() {
-	var request = CreateTestRequest()
-	_ = ToLuaTable(request)
-
+func (documentGenerator DocumentGenerator) GenerateDocument(request *restaurantApi.GenerateDocumentV1) {
 	currentDirectory := documentGenerator.getCurrentDirectory()
 	luatexTemplateDirectory := path.Join(currentDirectory, "run")
 	localDebugDirectory := path.Join(currentDirectory, "run", "generated")
@@ -29,10 +24,11 @@ func (documentGenerator DocumentGenerator) GenerateDocument() {
 	outputDirectory := path.Join(tmpDirectory, "generated")
 	documentGenerator.createDirectoryForRun(outputDirectory)
 
-	template := documentGenerator.GetTemplateName(request)
+	template, message := documentGenerator.GetTemplateName(request)
 	templateFile := documentGenerator.CopyLuatexTemplate(luatexTemplateDirectory, template, tmpDirectory)
 
-	documentGenerator.CreateDocumentInputData(luatexTemplateDirectory, template, tmpDirectory)
+	documentInputData := ToLuaTable(message)
+	documentGenerator.CreateDocumentInputData(template, tmpDirectory, documentInputData)
 
 	documentGenerator.ExecuteLuaLatex(outputDirectory, templateFile, tmpDirectory, localDebugDirectory)
 	log.Println("Document generated.") // TODO make this debug
@@ -74,15 +70,17 @@ func (documentGenerator DocumentGenerator) runCommand(outputDirectory string, te
 	return cmd, commandError
 }
 
-func (documentGenerator DocumentGenerator) GetTemplateName(request *restaurantApi.GenerateDocumentV1) string {
+func (documentGenerator DocumentGenerator) GetTemplateName(request *restaurantApi.GenerateDocumentV1) (string, proto.Message) {
 	var template string
+	var message proto.Message
 	switch request.RequestedDocuments[0].Type.(type) {
 	case *restaurantApi.GenerateDocumentV1_Document_Invoice:
 		template = "invoice"
+		message = request.RequestedDocuments[0].GetInvoice()
 	default:
 		log.Fatalf("Document %v not supported yet", request.RequestedDocuments[0].Type)
 	}
-	return template
+	return template, message
 }
 
 func (documentGenerator DocumentGenerator) CopyLuatexTemplate(documentDirectory string, template string, tmpDirectory string) string {
@@ -94,12 +92,18 @@ func (documentGenerator DocumentGenerator) CopyLuatexTemplate(documentDirectory 
 	return templateFile
 }
 
-func (documentGenerator DocumentGenerator) CreateDocumentInputData(luatexTemplateDirectory string, template string, tmpDirectory string) {
+func (documentGenerator DocumentGenerator) CreateDocumentInputData(template string, tmpDirectory string, inputData []byte) {
 	inputDataFile := template + ".lua"
-	_, luaErr := copyFile(path.Join(luatexTemplateDirectory, inputDataFile), path.Join(tmpDirectory, inputDataFile))
-	if luaErr != nil {
-		log.Fatalf("Can not copy lua file: %v", luaErr)
+	file, err := os.Create(path.Join(tmpDirectory, inputDataFile))
+	if err != nil {
+		log.Fatalf("Error creating input data: %v", err)
 	}
+	file.WriteString("local ")
+	file.Write(inputData)
+	// TODO Make name of InvoiceV1 flexible
+	tableAssign := "return {" + template + " = InvoiceV1 }"
+	file.WriteString(tableAssign)
+	file.Close()
 }
 
 func (_ DocumentGenerator) createDirectoryForRun(outputDirectory string) {
@@ -133,75 +137,11 @@ func copyFile(src, dst string) (int64, error) {
 	return nBytes, copyError
 }
 
-func CreateTestRequest() *restaurantApi.GenerateDocumentV1 {
-	randomRequestId := CreateRandomUuid()
-
-	request := restaurantApi.GenerateDocumentV1{
-		RequestId: randomRequestId,
-		RequestedDocuments: []*restaurantApi.GenerateDocumentV1_Document{
-			{
-				Type: &restaurantApi.GenerateDocumentV1_Document_Invoice{
-					Invoice: &restaurantApi.GenerateDocumentV1_Document_InvoiceV1{
-						DeliveredOn:  timestamppb.New(time.Date(2020, time.April, 13, 0, 0, 0, 0, time.UTC)),
-						CurrencyCode: "EUR",
-						Recipient: &restaurantApi.GenerateDocumentV1_Document_InvoiceV1_Recipient{
-							Name:     "Max Mustermann",
-							Street:   "Musterstraße 17",
-							City:     "Musterstadt",
-							PostCode: "12345",
-							Country:  "DE",
-						},
-						Items: []*restaurantApi.GenerateDocumentV1_Document_InvoiceV1_Item{
-							{
-								Description: "vfdsdsfdsfdsfs fdsfdskfdsk fdskfk fkwef kefkwekfe\\r\\nANS 23054303053",
-								Quantity:    2,
-								NetAmount:   &protobuf.Decimal{Value: "3.35"},
-								Taxation:    &protobuf.Decimal{Value: "19"},
-								TotalAmount: &protobuf.Decimal{Value: "3.99"},
-								Sum:         &protobuf.Decimal{Value: "7.98"},
-							},
-							{
-								Description: "vf ds dsf dsf dsfs fds fd skf dsk\\r\\nANS 606406540",
-								Quantity:    1,
-								NetAmount:   &protobuf.Decimal{Value: "9.07"},
-								Taxation:    &protobuf.Decimal{Value: "19"},
-								TotalAmount: &protobuf.Decimal{Value: "10.79"},
-								Sum:         &protobuf.Decimal{Value: "10.79"},
-							},
-							{
-								Description: "Versandkosten",
-								Quantity:    1,
-								NetAmount:   &protobuf.Decimal{Value: "0.00"},
-								Taxation:    &protobuf.Decimal{Value: "0"},
-								TotalAmount: &protobuf.Decimal{Value: "0.00"},
-								Sum:         &protobuf.Decimal{Value: "0.00"},
-							},
-						},
-					},
-				},
-				OutputFormats: []restaurantApi.GenerateDocumentV1_Document_OutputFormat{
-					restaurantApi.GenerateDocumentV1_Document_OUTPUT_FORMAT_PDF,
-				},
-			},
-			{},
-		},
+func ToLuaTable(m proto.Message) []byte {
+	opt := luatable.MarshalOptions{Multiline: true, UserConverters: []luatable.UserConverter{luatable.KinnekodeProtobuf{}}}
+	luaTable, err := opt.Marshal(m)
+	if err != nil {
+		log.Fatalf("Error converting protobuf message to luat table: %v", err)
 	}
-
-	return &request
-}
-
-func CreateRandomUuid() *protobuf.Uuid {
-	id, uuidErr := uuid.NewUUID()
-	if uuidErr != nil {
-		log.Fatalf("error generating google uuid: %v", uuidErr)
-	}
-	randomRequestId, protobufErr := protobuf.ToProtobuf(id)
-	if protobufErr != nil {
-		log.Fatalf("error generating protobuf uuid: %v", protobufErr)
-	}
-	return randomRequestId
-}
-
-func ToLuaTable(_ *restaurantApi.GenerateDocumentV1) []byte {
-	return []byte{}
+	return luaTable
 }

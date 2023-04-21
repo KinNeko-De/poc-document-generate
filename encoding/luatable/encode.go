@@ -198,7 +198,6 @@ func (e encodingRun) marshalSingular(val protoreflect.Value, fd protoreflect.Fie
 		e.WriteUint(val.Uint())
 	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Uint64Kind,
 		protoreflect.Sfixed64Kind, protoreflect.Fixed64Kind:
-		// 64-bit integers are written out as JSON string.
 		e.WriteNumber(val.String())
 
 	case protoreflect.FloatKind:
