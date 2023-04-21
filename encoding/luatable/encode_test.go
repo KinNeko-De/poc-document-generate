@@ -68,7 +68,6 @@ func TestFormatPositive(t *testing.T) {
 					},
 				},
 			},
-
 			option:   luatable.MarshalOptions{Multiline: true, UserConverters: []luatable.UserConverter{luatable.KinnekodeProtobuf{}}},
 			expected: "InvoiceV1 = {\n  deliveredOn = {\n    seconds = 1586736000\n  },\n  currencyCode = \"EUR\",\n  recipient = {\n    name = \"Max Mustermann\",\n    street = \"Musterstraße 17\",\n    city = \"Musterstadt\",\n    postCode = \"12345\",\n    country = \"DE\"\n  },\n  items = {\n    [1] = {\n      description = \"vfd \\\\% \\\\\\\\ANS 23054303053\",\n      quantity = 2,\n      netAmount = 3.35,\n      taxation = 19,\n      totalAmount = 3.99,\n      sum = 7.98\n    },\n    [2] = {\n      description = \"Abv djefk\\\\\\\\ANS 606406540\",\n      quantity = 1,\n      netAmount = 9.07,\n      taxation = 19,\n      totalAmount = 10.79,\n      sum = 10.79\n    },\n    [3] = {\n      description = \"Versandkosten\",\n      quantity = 1,\n      netAmount = 0.00,\n      taxation = 0,\n      totalAmount = 0.00,\n      sum = 0.00\n    }\n  }\n}",
 		},

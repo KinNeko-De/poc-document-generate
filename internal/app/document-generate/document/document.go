@@ -5,8 +5,11 @@ import (
 	protobuf "github.com/kinneko-de/test-api-contract/golang/kinnekode/protobuf"
 	restaurantApi "github.com/kinneko-de/test-api-contract/golang/kinnekode/restaurant/document"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	"io"
 	"log"
+	"os"
 	"os/exec"
+	"path"
 	"time"
 )
 
@@ -14,19 +17,69 @@ type DocumentGenerator struct {
 }
 
 func (_ DocumentGenerator) GenerateDocument() {
-	request := CreateTestRequest()
+	currentDirectory, err := os.Getwd()
+	if err != nil {
+		log.Println(err)
+	}
+	documentFolder := path.Join(currentDirectory, "run")
+	localDebugFolder := path.Join(currentDirectory, "run", "generated")
+
+	var request = CreateTestRequest()
 	_ = ToLuaTable(request)
 
+	tmpDirectory := path.Join(currentDirectory, request.RequestId.Value)
+	output := path.Join(tmpDirectory, "generated")
+	mkDirError := os.MkdirAll(output, os.ModeExclusive)
+	if mkDirError != nil {
+		log.Fatalf("Can not create output directory: %v", mkDirError)
+	}
 	document := "invoice.tex"
-	output := "./generated"
+	_, texErr := copyFile(path.Join(documentFolder, document), path.Join(tmpDirectory, document))
+	if texErr != nil {
+		log.Fatalf("Can not copy tex file: %v", mkDirError)
+	}
+	_, luaErr := copyFile(path.Join(documentFolder, "invoice.lua"), path.Join(tmpDirectory, "invoice.lua"))
+	if luaErr != nil {
+		log.Fatalf("Can not copy lua file: %v", mkDirError)
+	}
 	outputParameter := "-output-directory=" + output
 	cmd := exec.Command("lualatex", outputParameter, document)
-	cmd.Dir = "/app/run"
-	err := cmd.Run()
-	if err != nil {
-		log.Fatalf("error executing %v %v", cmd, err)
+	cmd.Dir = tmpDirectory
+	commandError := cmd.Run()
+
+	if commandError != nil {
+		source := path.Join(output, "invoice.log")
+		destination := path.Join(localDebugFolder, "invoice.log")
+		_, logCopyErr := copyFile(source, destination)
+		if logCopyErr != nil {
+			log.Fatalf("error coping latex log from %v to %v: %v", source, destination, logCopyErr)
+		}
+		log.Println("going to sleep for debug")
+		time.Sleep(time.Minute * 30)
+		log.Fatalf("error executing %v %v", cmd, commandError)
+	} else {
+		_, pdfErr := copyFile(path.Join(output, "invoice.pdf"), path.Join(localDebugFolder, "invoice.pdf"))
+		if pdfErr != nil {
+			log.Fatalf("error coping pdf file %v", pdfErr)
+		}
 	}
 	log.Println("Document generated.") // TODO make this debug
+}
+
+func copyFile(src, dst string) (int64, error) {
+	source, openError := os.Open(src)
+	if openError != nil {
+		return 0, openError
+	}
+	defer source.Close()
+
+	destination, createError := os.Create(dst)
+	if createError != nil {
+		return 0, createError
+	}
+	defer destination.Close()
+	nBytes, copyError := io.Copy(destination, source)
+	return nBytes, copyError
 }
 
 func CreateTestRequest() *restaurantApi.GenerateDocumentV1 {
