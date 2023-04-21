@@ -8,4 +8,4 @@ COPY /bin/app .
 #RUN chmod +r /app/documents
 RUN chmod +x /app/app
 
-ENTRYPOINT ["/app/app"]
+CMD ["/app/app"]
