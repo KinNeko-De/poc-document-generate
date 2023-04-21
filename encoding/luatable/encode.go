@@ -202,12 +202,10 @@ func (e encodingRun) marshalSingular(val protoreflect.Value, fd protoreflect.Fie
 		e.WriteNumber(val.String())
 
 	case protoreflect.FloatKind:
-		// Encoder.WriteFloat handles the special numbers NaN and infinites.
-		e.WriteFloat(val.Float(), 32)
+		errors.New("Floats are not supported yet.")
 
 	case protoreflect.DoubleKind:
-		// Encoder.WriteFloat handles the special numbers NaN and infinites.
-		e.WriteFloat(val.Float(), 64)
+		errors.New("Floats are not supported yet.")
 
 	case protoreflect.BytesKind:
 		errors.New("Bytes are not supported yet.")

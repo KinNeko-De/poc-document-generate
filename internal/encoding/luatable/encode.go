@@ -2,7 +2,6 @@ package luatable
 
 import (
 	"errors"
-	"math"
 	"math/bits"
 	"strconv"
 	"strings"
@@ -163,43 +162,6 @@ func indexNeedEscapeInString(s string) int {
 		}
 	}
 	return len(s)
-}
-
-// WriteFloat writes out the given float and bitSize in JSON number value.
-func (e *Encoder) WriteFloat(n float64, bitSize int) {
-	e.prepareNext(scalar)
-	e.out = appendFloat(e.out, n, bitSize)
-}
-
-// appendFloat formats given float in bitSize, and appends to the given []byte.
-func appendFloat(out []byte, n float64, bitSize int) []byte {
-	switch {
-	case math.IsNaN(n):
-		return append(out, `"NaN"`...)
-	case math.IsInf(n, +1):
-		return append(out, `"Infinity"`...)
-	case math.IsInf(n, -1):
-		return append(out, `"-Infinity"`...)
-	}
-
-	// JSON number formatting logic based on encoding/json.
-	// See floatEncoder.encode for reference.
-	fmt := byte('f')
-	if abs := math.Abs(n); abs != 0 {
-		if bitSize == 64 && (abs < 1e-6 || abs >= 1e21) ||
-			bitSize == 32 && (float32(abs) < 1e-6 || float32(abs) >= 1e21) {
-			fmt = 'e'
-		}
-	}
-	out = strconv.AppendFloat(out, n, fmt, -1, bitSize)
-	if fmt == 'e' {
-		n := len(out)
-		if n >= 4 && out[n-4] == 'e' && out[n-3] == '-' && out[n-2] == '0' {
-			out[n-2] = out[n-1]
-			out = out[:n-1]
-		}
-	}
-	return out
 }
 
 func (e *Encoder) WriteInt(n int64) {
