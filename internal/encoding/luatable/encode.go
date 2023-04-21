@@ -111,22 +111,35 @@ func appendString(out []byte, in string) ([]byte, error) {
 		switch r, n := utf8.DecodeRuneInString(in); {
 		case r == utf8.RuneError && n == 1:
 			return out, errors.New("the string contains invalid UTF-8 characters")
-		case r < ' ' || r == '"' || r == '\\':
-			out = append(out, '\\')
+		case r < ' ' || r == '"' || r == '\\' || r == '%':
 			switch r {
-			case '"', '\\':
+			case '%':
+				out = append(out, "\\\\"...)
+				out = append(out, byte(r))
+			case '\\':
+				nextChar := in[1]
+				switch nextChar {
+				case 'n':
+					out = append(out, "\\\\\\\\"...)
+					n++
+				case 'r':
+					n++
+				default:
+					out = append(out, "\\\\"...)
+				}
+			case '"':
+				out = append(out, '\\')
 				out = append(out, byte(r))
 			case '\b':
-				out = append(out, 'b')
+				errors.New("not implemented yet")
 			case '\f':
-				out = append(out, 'f')
-				// TODO make this different because luatex needs \\\\ instead of \r\n
+				errors.New("not implemented yet")
 			case '\n':
-				out = append(out, 'n')
+				out = append(out, "\\\\\\\\"...)
 			case '\r':
-				out = append(out, 'r')
+				// do nothing as \r\n and \n are reduced to line break
 			case '\t':
-				out = append(out, 't')
+				errors.New("not implemented yet")
 			default:
 				out = append(out, 'u')
 				out = append(out, "0000"[1+(bits.Len32(uint32(r))-1)/4:]...)
@@ -145,7 +158,7 @@ func appendString(out []byte, in string) ([]byte, error) {
 // escaping. If no characters need escaping, this returns the input length.
 func indexNeedEscapeInString(s string) int {
 	for i, r := range s {
-		if r < ' ' || r == '\\' || r == '"' || r == utf8.RuneError {
+		if r < ' ' || r == '\\' || r == '"' || r == '%' || r == utf8.RuneError {
 			return i
 		}
 	}
@@ -216,10 +229,7 @@ func (e *Encoder) EndObject() {
 
 func (e *Encoder) WriteKey(s string) error {
 	e.prepareNext(key)
-	var err error
-	if e.out, err = appendString(e.out, s); err != nil {
-		return err
-	}
+	e.out = append(e.out, s...)
 	e.WriteKeyAssign()
 	return nil
 }

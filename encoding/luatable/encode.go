@@ -13,13 +13,13 @@ import (
 const defaultIndent = "  "
 
 // Format formats the message as a lua table using default options.
-// Supports only proto3 messsages
+// Supports only proto3 messages
 func Format(m proto.Message) string {
 	return MarshalOptions{}.Format(m)
 }
 
 // Marshal convert the given proto.Message into a lua table using default options.
-// Supports only proto3 messsages
+// Supports only proto3 messages
 func Marshal(m proto.Message) ([]byte, error) {
 	return MarshalOptions{}.Marshal(m)
 }

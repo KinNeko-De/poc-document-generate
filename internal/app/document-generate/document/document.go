@@ -24,7 +24,7 @@ func (_ DocumentGenerator) GenerateDocument() {
 	cmd.Dir = "/app/run"
 	err := cmd.Run()
 	if err != nil {
-		log.Fatalf("error executiong %v %v", cmd, err)
+		log.Fatalf("error executing %v %v", cmd, err)
 	}
 	log.Println("Document generated.") // TODO make this debug
 }
